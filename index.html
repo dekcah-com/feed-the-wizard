@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feed the Wizard!</title>
+    <link rel="stylesheet" href="/css/style.css"> </head>
+<body>
+    <h1>Feed the Wizard!</h1>
+
+    <div id="game-info">
+         <span id="score-display">Score: 0</span>
+         <span id="timer-display">Time: 60</span>
+    </div>
+
+    <div id="leaderboard-area">
+        <h2>Top Scores</h2>
+        <ol id="leaderboard-list">
+            <li>Loading...</li>
+        </ol>
+    </div>
+
+    <div id="game-area">
+        <img id="wizard" src="/assets/wizard.png" alt="Wizard" onerror="this.onerror=null; this.src='https://placehold.co/80x100/7e22ce/white?text=Wizard';">
+        <div id="game-over-message" class="message-overlay" style="display: none;">
+            <h2>Game Over!</h2>
+            <p>Final Score: <span id="final-score">0</span></p>
+            <button id="restart-button">Play Again?</button>
+            </div>
+         <div id="start-message" class="message-overlay">
+            <h2>Feed the Wizard!</h2>
+            <p>Click the food to feed the wizard before time runs out!</p>
+            <button id="start-button">Start Game</button>
+        </div>
+    </div>
+
+    <script type="module" src="/js/main.js"></script>
+</body>
+</html>

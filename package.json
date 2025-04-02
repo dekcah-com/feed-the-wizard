@@ -1,0 +1,24 @@
+{
+  "name": "feedthewizard",
+  "version": "1.0.0",
+  "description": "A simple browser-based game where the objective is to feed a wizard.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "author": "Dekcah",
+  "license": "MIT",
+  "dependencies": {
+    "firebase": "^10.12.2"
+  },
+  "devDependencies": {
+    "vite": "^5.3.1"
+  },
+  "main": "index.js",
+  "keywords": [
+    "game",
+    "firebase",
+    "javascript"
+  ]
+}

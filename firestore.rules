@@ -1,0 +1,35 @@
+    rules_version = '2';
+
+    // Specify rules for Cloud Firestore service
+    service cloud.firestore {
+      // Match the default database
+      match /databases/{database}/documents {
+
+        // Target the 'leaderboard' collection
+        match /leaderboard/{scoreId} {
+          // Allow anyone to read leaderboard entries
+          allow read: if true;
+
+          // Allow anyone to create a new score document IF:
+          // 1. The request is a create operation.
+          // 2. The incoming data ('resource.data') has ONLY 'name', 'score', 'createdAt' fields.
+          // 3. 'name' is a non-empty string (max 50 chars).
+          // 4. 'score' is a number >= 0.
+          // 5. 'createdAt' matches the server timestamp placeholder.
+          allow create: if request.resource.data.keys().hasOnly(['name', 'score', 'createdAt']) &&
+                           request.resource.data.name is string &&
+                           request.resource.data.name.size() > 0 && request.resource.data.name.size() < 50 &&
+                           request.resource.data.score is number &&
+                           request.resource.data.score >= 0 &&
+                           request.resource.data.createdAt == request.time; // Ensure server timestamp is used
+
+          // Disallow updates and deletes for now
+          allow update, delete: if false;
+        }
+
+        // Deny access to all other collections by default (good practice)
+         match /{document=**} {
+           allow read, write: if false;
+         }
+      }
+    }
